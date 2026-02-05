@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1sjlmgtoxhei"]
+[gd_scene load_steps=4 format=3 uid="uid://d1sjlmgtoxhei"]
 
 [ext_resource type="Script" uid="uid://cm51w1h5opbfx" path="res://scenes/culos/culo_1.gd" id="1_me7xb"]
 [ext_resource type="Texture2D" uid="uid://kjcs8jqf5h3y" path="res://assets/butt1.png" id="2_hrxlq"]
+[ext_resource type="PackedScene" uid="uid://6ewnf2c87odx" path="res://Components/game_manager/GameManager.tscn" id="3_hrxlq"]
 
 [node name="Culo1" type="Node2D"]
 script = ExtResource("1_me7xb")
@@ -11,11 +12,6 @@ position = Vector2(399, 286)
 scale = Vector2(3.5540533, 3.5540538)
 texture = ExtResource("2_hrxlq")
 metadata/_edit_lock_ = true
-
-[node name="hit_cooldown" type="Timer" parent="."]
-
-[node name="hit_timer" type="Timer" parent="."]
-wait_time = 0.1
 
 [node name="zona1" type="Area2D" parent="."]
 position = Vector2(-164, -23)
@@ -30,8 +26,9 @@ position = Vector2(-164, -23)
 position = Vector2(3, 256)
 polygon = PackedVector2Array(456, 144, 511, 136, 569, 110, 626, 141, 699, 149, 799, 138, 791, 211, 775, 269, 760, 317, 560, 312, 483, 322, 381, 323, 355, 301, 330, 183, 329, 116, 364, 127)
 
-[connection signal="timeout" from="hit_cooldown" to="." method="_on_hit_cooldown_timeout"]
-[connection signal="timeout" from="hit_timer" to="." method="_on_hit_timer_timeout"]
+[node name="GameManager" parent="." node_paths=PackedStringArray("butt_1") instance=ExtResource("3_hrxlq")]
+butt_1 = NodePath("../Butt1")
+
 [connection signal="mouse_entered" from="zona1" to="." method="_on_zona_1_mouse_entered"]
 [connection signal="mouse_exited" from="zona1" to="." method="_on_zona_1_mouse_exited"]
 [connection signal="mouse_entered" from="zona2" to="." method="_on_zona_2_mouse_entered"]

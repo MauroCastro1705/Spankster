@@ -4,3 +4,11 @@
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_m0s7c")
+
+[node name="hit_cooldown" type="Timer" parent="."]
+
+[node name="hit_timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="hit_cooldown" to="." method="_on_hit_cooldown_timeout"]
+[connection signal="timeout" from="hit_timer" to="." method="_on_hit_timer_timeout"]
