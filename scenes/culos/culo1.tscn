@@ -7,7 +7,7 @@
 script = ExtResource("1_me7xb")
 
 [node name="Butt1" type="Sprite2D" parent="."]
-position = Vector2(563, 309)
+position = Vector2(399, 286)
 scale = Vector2(3.5540533, 3.5540538)
 texture = ExtResource("2_hrxlq")
 metadata/_edit_lock_ = true
@@ -18,11 +18,13 @@ metadata/_edit_lock_ = true
 wait_time = 0.1
 
 [node name="zona1" type="Area2D" parent="."]
+position = Vector2(-164, -23)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="zona1"]
 polygon = PackedVector2Array(448, 159, 486, 143, 583, 134, 699, 149, 774, 246, 796, 318, 805, 383, 715, 393, 695, 393, 637, 387, 604, 370, 574, 350, 542, 370, 517, 381, 462, 389, 370, 372, 338, 362, 345, 313, 361, 270, 408, 193)
 
 [node name="zona2" type="Area2D" parent="."]
+position = Vector2(-164, -23)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="zona2"]
 position = Vector2(3, 256)

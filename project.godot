@@ -18,12 +18,21 @@ config/icon="res://icon.svg"
 
 Global="*res://global_code/global.gd"
 
+[display]
+
+window/size/viewport_width=800
+window/size/viewport_height=600
+
 [file_customization]
 
 folder_colors={
+"res://Components/barras/dolor/": "red",
+"res://Components/barras/placer/": "orange",
+"res://Components/barras/tolerancia/": "green",
 "res://UI/": "green",
 "res://assets/": "orange",
-"res://global_code/": "pink"
+"res://global_code/": "pink",
+"res://resources/": "yellow"
 }
 
 [input]

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Spank" load_steps=2 format=3 uid="uid://diboyf6rdn73n"]
+
+[ext_resource type="Script" uid="uid://c3tpradub72ka" path="res://resources/Spank_stats.gd" id="1_p7twq"]
+
+[resource]
+script = ExtResource("1_p7twq")
+metadata/_custom_type_script = "uid://c3tpradub72ka"
