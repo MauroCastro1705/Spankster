@@ -1,0 +1,93 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhwaybeawbrfg"]
+
+[ext_resource type="Script" uid="uid://blt6vuy7uip0a" path="res://Components/UI_herramienta/herramienta.gd" id="1_rrro6"]
+[ext_resource type="Texture2D" uid="uid://cvdu37ju30a6p" path="res://assets/1Recurso 3.png" id="2_c5il5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iaakt"]
+atlas = ExtResource("2_c5il5")
+region = Rect2(0, 0, 193.69217, 191.16075)
+
+[node name="Herramienta" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rrro6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 271.0
+offset_bottom = 84.0
+color = Color(0.22911215, 0.22911215, 0.22911215, 1)
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -6.5
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 23
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+alignment = 1
+
+[node name="texture" type="TextureRect" parent="ColorRect/MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("AtlasTexture_iaakt")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ColorRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="ColorRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="dolor" type="Label" parent="ColorRect/MarginContainer/HBoxContainer/VBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "dor"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="placer" type="Label" parent="ColorRect/MarginContainer/HBoxContainer/VBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "placer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="tolerancia" type="Label" parent="ColorRect/MarginContainer/HBoxContainer/VBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "tolerancia"
+horizontal_alignment = 1
+vertical_alignment = 1

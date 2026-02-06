@@ -26,6 +26,7 @@ window/size/viewport_height=600
 [file_customization]
 
 folder_colors={
+"res://Components/UI_herramienta/": "green",
 "res://Components/barras/dolor/": "red",
 "res://Components/barras/placer/": "pink",
 "res://Components/barras/tolerancia/": "green",
