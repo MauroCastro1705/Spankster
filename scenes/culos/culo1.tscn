@@ -38,15 +38,15 @@ position = Vector2(3, 256)
 polygon = PackedVector2Array(456, 144, 511, 136, 569, 110, 626, 141, 699, 149, 799, 138, 791, 211, 775, 269, 760, 317, 560, 312, 483, 322, 381, 323, 355, 301, 330, 183, 329, 116, 364, 127)
 
 [node name="DolorBar" parent="." instance=ExtResource("4_ed82e")]
-offset_left = 548.0
+offset_left = 552.0
 offset_top = 26.0
-offset_right = 789.0
+offset_right = 793.0
 offset_bottom = 53.0
 
 [node name="PlacerBar" parent="." instance=ExtResource("4_xbxn5")]
-offset_left = 551.0
+offset_left = 552.0
 offset_top = 66.0
-offset_right = 792.0
+offset_right = 793.0
 offset_bottom = 93.0
 
 [node name="ToleranciaBar" parent="." instance=ExtResource("5_l50a1")]
@@ -55,18 +55,18 @@ offset_top = 104.0
 offset_right = 793.0
 offset_bottom = 131.0
 
+[node name="Herramienta" parent="." instance=ExtResource("7_l50a1")]
+offset_left = 23.0
+offset_top = 24.0
+offset_right = 23.0
+offset_bottom = 24.0
+
 [node name="GameManager" parent="." node_paths=PackedStringArray("Dolor", "Placer", "Tolerancia", "herramienta", "butt_1") instance=ExtResource("3_hrxlq")]
 Dolor = NodePath("../DolorBar")
 Placer = NodePath("../PlacerBar")
 Tolerancia = NodePath("../ToleranciaBar")
 herramienta = NodePath("../Herramienta")
 butt_1 = NodePath("../Butt1")
-
-[node name="Herramienta" parent="." instance=ExtResource("7_l50a1")]
-offset_left = 23.0
-offset_top = 24.0
-offset_right = 23.0
-offset_bottom = 24.0
 
 [connection signal="mouse_entered" from="zona1" to="." method="_on_zona_1_mouse_entered"]
 [connection signal="mouse_exited" from="zona1" to="." method="_on_zona_1_mouse_exited"]

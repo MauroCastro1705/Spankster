@@ -2,8 +2,8 @@
 extends Control
 @onready var dolor_prograss_bar: ProgressBar = $DolorPrograssBar
 
-var max_dolor:int
-var current_placer:int
+var max_dolor
+var current_placer
 
 func _ready() -> void:
 	current_placer = 0
@@ -14,12 +14,12 @@ func set_value():
 	dolor_prograss_bar.value = current_placer
 
 
-func update_placer(new_value: int):
+func update_placer(new_value):
 	current_placer += new_value
 	dolor_prograss_bar.value = current_placer
 	print("se updateo el Dolor")
 
-func disminuir_placer(value:int):
+func disminuir_placer(value):
 	current_placer -= value
 	dolor_prograss_bar.value = current_placer
 	print("se updateo el Dolor")

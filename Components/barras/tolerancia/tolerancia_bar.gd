@@ -2,8 +2,8 @@
 extends Control
 @onready var dolor_prograss_bar: ProgressBar = $DolorPrograssBar
 
-var max_dolor:int
-var current_tolerancia:int
+var max_dolor:float
+var current_tolerancia:float
 
 func _ready() -> void:
 	current_tolerancia = Global.tolerancia_max
@@ -14,12 +14,12 @@ func set_value():
 	dolor_prograss_bar.value = current_tolerancia
 
 
-func update_tolerancia(new_value: int):
+func update_tolerancia(new_value: float):
 	current_tolerancia += new_value
 	dolor_prograss_bar.value = current_tolerancia
 	print("se updateo el Dolor")
 
-func disminuir_tolerancia(value:int):
+func disminuir_tolerancia(value:float):
 	current_tolerancia -= value
 	dolor_prograss_bar.value = current_tolerancia
 	print("se updateo el Dolor")

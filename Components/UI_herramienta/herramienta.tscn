@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhwaybeawbrfg"]
+[gd_scene load_steps=7 format=3 uid="uid://bhwaybeawbrfg"]
 
 [ext_resource type="Script" uid="uid://blt6vuy7uip0a" path="res://Components/UI_herramienta/herramienta.gd" id="1_rrro6"]
 [ext_resource type="Texture2D" uid="uid://cvdu37ju30a6p" path="res://assets/1Recurso 3.png" id="2_c5il5"]
@@ -6,6 +6,18 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_iaakt"]
 atlas = ExtResource("2_c5il5")
 region = Rect2(0, 0, 193.69217, 191.16075)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5il5"]
+atlas = ExtResource("2_c5il5")
+region = Rect2(439.09717, 26.387444, 79.26257, 75.17466)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lqef"]
+atlas = ExtResource("2_c5il5")
+region = Rect2(474.0002, 256.00006, 80.37564, 95.00006)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkofu"]
+atlas = ExtResource("2_c5il5")
+region = Rect2(450.04144, 144.74573, 91.89642, 55.882965)
 
 [node name="Herramienta" type="Control"]
 layout_mode = 3
@@ -32,10 +44,10 @@ offset_top = -6.5
 offset_bottom = 6.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer"]
 layout_mode = 2
@@ -73,21 +85,49 @@ vertical_alignment = 1
 layout_mode = 2
 alignment = 1
 
-[node name="dolor" type="Label" parent="ColorRect/MarginContainer/HBoxContainer/VBoxContainer3"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/HBoxContainer/VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_c5il5")
+expand_mode = 2
+stretch_mode = 5
+flip_h = true
+
+[node name="dolor" type="Label" parent="ColorRect/MarginContainer/HBoxContainer/VBoxContainer3/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "dor"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="placer" type="Label" parent="ColorRect/MarginContainer/HBoxContainer/VBoxContainer3"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="ColorRect/MarginContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/HBoxContainer/VBoxContainer3/HBoxContainer2"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6lqef")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="placer" type="Label" parent="ColorRect/MarginContainer/HBoxContainer/VBoxContainer3/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "placer"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="tolerancia" type="Label" parent="ColorRect/MarginContainer/HBoxContainer/VBoxContainer3"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="ColorRect/MarginContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/HBoxContainer/VBoxContainer3/HBoxContainer3"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_kkofu")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="tolerancia" type="Label" parent="ColorRect/MarginContainer/HBoxContainer/VBoxContainer3/HBoxContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "tolerancia"

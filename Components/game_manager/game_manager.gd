@@ -25,6 +25,9 @@ signal spank
 var colorZona1 := Color(0, 1, 0.5)
 var colorZona2 := Color(1, 0.084, 0.08)
 var colorSpank
+var zona1_multi:float = 1.0
+var zona2_multi:float = 1.25
+var spank_multi
 
 var arma_elegida
 
@@ -62,16 +65,19 @@ func se_hizo_spank():
 func zona1_act():
 	colorSpank = colorZona1
 	canSpankZona = true
+	spank_multi = zona1_multi
 	print("zona1")
 
 func zona2_act():
 	colorSpank = colorZona2
 	canSpankZona = true
+	spank_multi = zona2_multi
 	print("zona2")
 
 func reset_spank():
 	canSpankZona = false
 	colorSpank = colorInicial
+	spank_multi = 1
 	print("spank reset")
 
 func _on_hit_cooldown_timeout() -> void:
@@ -100,17 +106,17 @@ func calcular_dmg():
 	if arma_elegida:
 		update_global_var()
 		game_over_check()
-		Dolor.update_dolor(arma_elegida.dolor)
-		Placer.update_placer(arma_elegida.placer)
-		Tolerancia.disminuir_tolerancia(arma_elegida.tolerancia)
-		print("dolor: " , arma_elegida.dolor)
-		print("placer: " , arma_elegida.placer)
-		print("tolerancia: " , arma_elegida.tolerancia)
+		Dolor.update_dolor(arma_elegida.dolor * spank_multi)
+		Placer.update_placer(arma_elegida.placer * spank_multi)
+		Tolerancia.disminuir_tolerancia(arma_elegida.tolerancia * spank_multi)
+		print("dolor: " , arma_elegida.dolor * spank_multi)
+		print("placer: " , arma_elegida.placer * spank_multi)
+		print("tolerancia: " , arma_elegida.tolerancia * spank_multi)
 
 func update_global_var():
-	Global.dolor += arma_elegida.dolor
-	Global.placer += arma_elegida.placer
-	Global.tolerancia -= arma_elegida.tolerancia
+	Global.dolor += arma_elegida.dolor * spank_multi
+	Global.placer += arma_elegida.placer * spank_multi
+	Global.tolerancia -= arma_elegida.tolerancia * spank_multi
 
 func game_over_check():
 	if Global.tolerancia <= 0:

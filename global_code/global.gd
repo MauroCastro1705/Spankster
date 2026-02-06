@@ -2,16 +2,16 @@ extends Node
 var spank_timer:float = 1.0
 signal gameOver
 
-var placer:int = 0
-var placer_max:int = 100
+var placer:float = 0
+var placer_max:float = 100
 
-var dolor:int = 0
-var dolor_max:int = 100
+var dolor:float = 0
+var dolor_max:float = 100
 
-var tolerancia:int = 100 #va disminuyendo
-var tolerancia_max:int = 100
+var tolerancia:float = 100 #va disminuyendo
+var tolerancia_max:float = 100
 
-var player_score:int = 0
+var player_score:float = 0
 
 func score_calculation():
 	print("---game over----")

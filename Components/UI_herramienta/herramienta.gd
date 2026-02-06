@@ -11,9 +11,9 @@ var choosen_tool
 func set_tool():
 	icono.texture = choosen_tool.icono
 	nombre_label.text = choosen_tool.name
-	dolor_label.text = "Dolor: " + str(choosen_tool.dolor)
-	placer_label.text = "Placer: " + str(choosen_tool.placer)
-	tolerancia_label.text = "Tolerancia: " + str(choosen_tool.tolerancia)
+	dolor_label.text = str(choosen_tool.dolor)
+	placer_label.text = str(choosen_tool.placer)
+	tolerancia_label.text = str(choosen_tool.tolerancia)
 	print("tool seted")
 
 func select_tool(tool:Resource):
