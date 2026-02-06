@@ -37,6 +37,7 @@ func _ready() -> void:
 	Placer.set_value()
 	Tolerancia.set_value()
 	arma_elegida = FLOGGER
+	Global.player_score = 0
 	
 	
 
@@ -52,7 +53,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("golpe"):
 		hitCulo()
 	elegir_arma()
-	game_over_check()
+	
 
 func se_hizo_spank():
 	print("spank hecho")
@@ -98,6 +99,7 @@ func activar_arma(arma):
 func calcular_dmg():
 	if arma_elegida:
 		update_global_var()
+		game_over_check()
 		Dolor.update_dolor(arma_elegida.dolor)
 		Placer.update_placer(arma_elegida.placer)
 		Tolerancia.disminuir_tolerancia(arma_elegida.tolerancia)
@@ -113,4 +115,5 @@ func update_global_var():
 func game_over_check():
 	if Global.tolerancia <= 0:
 		canSpankZona = false
-		print("---game over----")
+		Global.gameOver.emit()
+		return

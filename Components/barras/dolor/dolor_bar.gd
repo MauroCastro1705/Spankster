@@ -16,9 +16,7 @@ func set_value():
 func update_dolor(new_value: int):
 	current_dolor += new_value
 	dolor_prograss_bar.value = current_dolor
-	print("se updateo el Dolor")
 
 func disminuir_dolor(value:int):
 	current_dolor -= value
 	dolor_prograss_bar.value = current_dolor
-	print("se updateo el Dolor")
