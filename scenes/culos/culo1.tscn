@@ -48,10 +48,11 @@ offset_top = 104.0
 offset_right = 793.0
 offset_bottom = 131.0
 
-[node name="GameManager" parent="." node_paths=PackedStringArray("Dolor", "Placer", "Tolerancia", "butt_1") instance=ExtResource("3_hrxlq")]
+[node name="GameManager" parent="." node_paths=PackedStringArray("Dolor", "Placer", "Tolerancia", "herramienta", "butt_1") instance=ExtResource("3_hrxlq")]
 Dolor = NodePath("../DolorBar")
 Placer = NodePath("../PlacerBar")
 Tolerancia = NodePath("../ToleranciaBar")
+herramienta = NodePath("../Herramienta")
 butt_1 = NodePath("../Butt1")
 
 [node name="Herramienta" parent="." instance=ExtResource("7_l50a1")]

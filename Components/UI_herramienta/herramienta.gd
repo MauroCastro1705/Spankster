@@ -20,5 +20,4 @@ func select_tool(tool:Resource):
 	choosen_tool = tool
 	
 func _ready() -> void:
-	select_tool(FLOGGER)
-	set_tool()
+	pass

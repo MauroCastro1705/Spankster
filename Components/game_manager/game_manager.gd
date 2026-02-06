@@ -17,6 +17,7 @@ signal spank
 @export var Dolor:Control
 @export var Placer:Control
 @export var Tolerancia:Control
+@export var herramienta:Control
 
 #sprite
 @export var butt_1:Sprite2D
@@ -87,18 +88,21 @@ func _on_hit_timer_timeout() -> void:
 
 func elegir_arma():
 	if Input.is_action_just_pressed("arma1"):
-		arma_elegida = FLOGGER
-		print(arma_elegida.name)
+		activar_arma(FLOGGER)
 	if  Input.is_action_just_pressed("arma2"):
-		arma_elegida = MANO
-		print(arma_elegida.name)
+		activar_arma(MANO)
 	if  Input.is_action_just_pressed("arma3"):
-		arma_elegida = PALMETA
-		print(arma_elegida.name)
+		activar_arma(PALMETA)
 	if  Input.is_action_just_pressed("arma4"):
-		arma_elegida = VARILLA
-		print(arma_elegida.name)
-	
+		activar_arma(VARILLA)
+
+func activar_arma(arma):
+	arma_elegida = arma
+	print(arma_elegida.name)
+	herramienta.select_tool(arma)
+	herramienta.set_tool()
+
+
 func calcular_dmg():
 	if arma_elegida:
 		Dolor.update_dolor(arma_elegida.dolor)
