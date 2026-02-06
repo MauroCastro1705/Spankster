@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1sjlmgtoxhei"]
+[gd_scene load_steps=5 format=3 uid="uid://d1sjlmgtoxhei"]
 
 [ext_resource type="Script" uid="uid://cm51w1h5opbfx" path="res://scenes/culos/culo_1.gd" id="1_me7xb"]
 [ext_resource type="Texture2D" uid="uid://kjcs8jqf5h3y" path="res://assets/butt1.png" id="2_hrxlq"]
 [ext_resource type="PackedScene" uid="uid://6ewnf2c87odx" path="res://Components/game_manager/GameManager.tscn" id="3_hrxlq"]
+[ext_resource type="PackedScene" uid="uid://d1lxcbhqiw7oo" path="res://Components/barras/dolor/Dolor_bar.tscn" id="4_ed82e"]
 
 [node name="Culo1" type="Node2D"]
 script = ExtResource("1_me7xb")
@@ -26,7 +27,14 @@ position = Vector2(-164, -23)
 position = Vector2(3, 256)
 polygon = PackedVector2Array(456, 144, 511, 136, 569, 110, 626, 141, 699, 149, 799, 138, 791, 211, 775, 269, 760, 317, 560, 312, 483, 322, 381, 323, 355, 301, 330, 183, 329, 116, 364, 127)
 
-[node name="GameManager" parent="." node_paths=PackedStringArray("butt_1") instance=ExtResource("3_hrxlq")]
+[node name="DolorBar" parent="." instance=ExtResource("4_ed82e")]
+offset_left = 548.0
+offset_top = 26.0
+offset_right = 789.0
+offset_bottom = 53.0
+
+[node name="GameManager" parent="." node_paths=PackedStringArray("Dolor", "butt_1") instance=ExtResource("3_hrxlq")]
+Dolor = NodePath("../DolorBar")
 butt_1 = NodePath("../Butt1")
 
 [connection signal="mouse_entered" from="zona1" to="." method="_on_zona_1_mouse_entered"]

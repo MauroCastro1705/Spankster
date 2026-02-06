@@ -13,6 +13,10 @@ signal spank
 @onready var canSpankZona:bool = false
 @onready var spankeableZone:bool = false
 
+@export var Dolor:Control
+@export var Placer:Control
+@export var Tolerancia:Control
+
 @export var butt_1:Sprite2D
 
 @onready var colorInicial
@@ -26,6 +30,8 @@ func _ready() -> void:
 	print(colorInicial)
 	spank.connect(se_hizo_spank)
 	hit_cooldown.wait_time = Global.spank_timer
+	Dolor.set_value()
+	
 	
 
 
@@ -45,6 +51,7 @@ func _process(_delta: float) -> void:
 
 func se_hizo_spank():
 	print("spank hecho")
+	Dolor.update_dolor(10)
 
 
 func zona1_act():
