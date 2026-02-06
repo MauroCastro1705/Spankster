@@ -11,7 +11,6 @@ signal spank
 @onready var hit_cooldown: Timer = $hit_cooldown
 @onready var canSpankTimer:bool = true
 @onready var canSpankZona:bool = false
-@onready var spankeableZone:bool = false
 
 #barras de stats
 @export var Dolor:Control
@@ -37,9 +36,9 @@ func _ready() -> void:
 	Dolor.set_value()
 	Placer.set_value()
 	Tolerancia.set_value()
+	arma_elegida = FLOGGER
 	
 	
-
 
 func hitCulo():
 	if canSpankTimer and canSpankZona:
@@ -49,18 +48,15 @@ func hitCulo():
 		canSpankTimer = false
 		emit_signal("spank")
 	
-	
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("golpe"):
 		hitCulo()
 	elegir_arma()
-
+	game_over_check()
 
 func se_hizo_spank():
 	print("spank hecho")
 	calcular_dmg()
-	
-
 
 func zona1_act():
 	colorSpank = colorZona1
@@ -77,11 +73,8 @@ func reset_spank():
 	colorSpank = colorInicial
 	print("spank reset")
 
-
-
 func _on_hit_cooldown_timeout() -> void:
 	canSpankTimer = true
-
 
 func _on_hit_timer_timeout() -> void:
 	butt_1.modulate = colorInicial
@@ -102,12 +95,22 @@ func activar_arma(arma):
 	herramienta.select_tool(arma)
 	herramienta.set_tool()
 
-
 func calcular_dmg():
 	if arma_elegida:
+		update_global_var()
 		Dolor.update_dolor(arma_elegida.dolor)
 		Placer.update_placer(arma_elegida.placer)
 		Tolerancia.disminuir_tolerancia(arma_elegida.tolerancia)
 		print("dolor: " , arma_elegida.dolor)
 		print("placer: " , arma_elegida.placer)
 		print("tolerancia: " , arma_elegida.tolerancia)
+
+func update_global_var():
+	Global.dolor += arma_elegida.dolor
+	Global.placer += arma_elegida.placer
+	Global.tolerancia -= arma_elegida.tolerancia
+
+func game_over_check():
+	if Global.tolerancia <= 0:
+		canSpankZona = false
+		print("---game over----")
