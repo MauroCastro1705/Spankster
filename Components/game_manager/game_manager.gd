@@ -13,10 +13,12 @@ signal spank
 @onready var canSpankZona:bool = false
 @onready var spankeableZone:bool = false
 
+#barras de stats
 @export var Dolor:Control
 @export var Placer:Control
 @export var Tolerancia:Control
 
+#sprite
 @export var butt_1:Sprite2D
 
 @onready var colorInicial
@@ -24,6 +26,7 @@ var colorZona1 := Color(0, 1, 0.5)
 var colorZona2 := Color(1, 0.084, 0.08)
 var colorSpank
 
+var arma_elegida
 
 func _ready() -> void:
 	colorInicial = butt_1.modulate
@@ -31,6 +34,8 @@ func _ready() -> void:
 	spank.connect(se_hizo_spank)
 	hit_cooldown.wait_time = Global.spank_timer
 	Dolor.set_value()
+	Placer.set_value()
+	Tolerancia.set_value()
 	
 	
 
@@ -45,13 +50,15 @@ func hitCulo():
 	
 	
 func _process(_delta: float) -> void:
-	if Input.is_action_pressed("golpe"):
+	if Input.is_action_just_pressed("golpe"):
 		hitCulo()
+	elegir_arma()
 
 
 func se_hizo_spank():
 	print("spank hecho")
-	Dolor.update_dolor(10)
+	calcular_dmg()
+	
 
 
 func zona1_act():
@@ -77,3 +84,26 @@ func _on_hit_cooldown_timeout() -> void:
 
 func _on_hit_timer_timeout() -> void:
 	butt_1.modulate = colorInicial
+
+func elegir_arma():
+	if Input.is_action_just_pressed("arma1"):
+		arma_elegida = FLOGGER
+		print(arma_elegida.name)
+	if  Input.is_action_just_pressed("arma2"):
+		arma_elegida = MANO
+		print(arma_elegida.name)
+	if  Input.is_action_just_pressed("arma3"):
+		arma_elegida = PALMETA
+		print(arma_elegida.name)
+	if  Input.is_action_just_pressed("arma4"):
+		arma_elegida = VARILLA
+		print(arma_elegida.name)
+	
+func calcular_dmg():
+	if arma_elegida:
+		Dolor.update_dolor(arma_elegida.dolor)
+		Placer.update_placer(arma_elegida.placer)
+		Tolerancia.disminuir_tolerancia(arma_elegida.tolerancia)
+		print("dolor: " , arma_elegida.dolor)
+		print("placer: " , arma_elegida.placer)
+		print("tolerancia: " , arma_elegida.tolerancia)

@@ -1,24 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1lxcbhqiw7oo"]
+[gd_scene load_steps=6 format=3 uid="uid://bpi8cwhk3qwiu"]
 
-[ext_resource type="Script" uid="uid://f2m8ukadh2lo" path="res://Components/barras/dolor/dolor_bar.gd" id="1_v7n1s"]
-[ext_resource type="Texture2D" uid="uid://cvdu37ju30a6p" path="res://assets/1Recurso 3.png" id="2_hiy7e"]
+[ext_resource type="Script" uid="uid://dnjascivipw5q" path="res://Components/barras/tolerancia/tolerancia_bar.gd" id="1_70ecc"]
+[ext_resource type="Texture2D" uid="uid://cvdu37ju30a6p" path="res://assets/1Recurso 3.png" id="2_oanwx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v7n1s"]
 bg_color = Color(0.26666668, 0.26666668, 0.26666668, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hiy7e"]
-bg_color = Color(1, 0.23529412, 0.23921569, 1)
+bg_color = Color(0.16862746, 0.48235294, 0.15686275, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nas0c"]
-atlas = ExtResource("2_hiy7e")
-region = Rect2(444.04123, 23.392513, 79.477936, 78.23607)
+[sub_resource type="AtlasTexture" id="AtlasTexture_17n50"]
+atlas = ExtResource("2_oanwx")
+region = Rect2(455.4202, 144.00006, 84.70004, 58.080017)
 
-[node name="DolorBar" type="Control"]
+[node name="ToleranciaBar" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 241.0
 offset_bottom = 27.0
-script = ExtResource("1_v7n1s")
+script = ExtResource("1_70ecc")
 
 [node name="DolorPrograssBar" type="ProgressBar" parent="."]
 layout_mode = 1
@@ -34,17 +34,17 @@ show_percentage = false
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = -33.0
-offset_top = -2.0
-offset_bottom = 29.0
-texture = SubResource("AtlasTexture_nas0c")
+offset_left = -32.0
+offset_top = 2.0
+offset_right = -0.60256195
+offset_bottom = 26.0
+texture = SubResource("AtlasTexture_17n50")
 expand_mode = 1
-flip_h = true
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_right = 241.0
 offset_bottom = 27.0
-text = "Dolor"
+text = "Tolerancia"
 horizontal_alignment = 1
 vertical_alignment = 1

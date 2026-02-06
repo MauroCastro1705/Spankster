@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1sjlmgtoxhei"]
+[gd_scene load_steps=7 format=3 uid="uid://d1sjlmgtoxhei"]
 
 [ext_resource type="Script" uid="uid://cm51w1h5opbfx" path="res://scenes/culos/culo_1.gd" id="1_me7xb"]
 [ext_resource type="Texture2D" uid="uid://kjcs8jqf5h3y" path="res://assets/butt1.png" id="2_hrxlq"]
 [ext_resource type="PackedScene" uid="uid://6ewnf2c87odx" path="res://Components/game_manager/GameManager.tscn" id="3_hrxlq"]
 [ext_resource type="PackedScene" uid="uid://d1lxcbhqiw7oo" path="res://Components/barras/dolor/Dolor_bar.tscn" id="4_ed82e"]
+[ext_resource type="PackedScene" uid="uid://c3jiq80rb54pt" path="res://Components/barras/placer/Placer_bar.tscn" id="4_xbxn5"]
+[ext_resource type="PackedScene" uid="uid://bpi8cwhk3qwiu" path="res://Components/barras/tolerancia/Tolerancia_bar.tscn" id="5_l50a1"]
 
 [node name="Culo1" type="Node2D"]
 script = ExtResource("1_me7xb")
@@ -33,8 +35,22 @@ offset_top = 26.0
 offset_right = 789.0
 offset_bottom = 53.0
 
-[node name="GameManager" parent="." node_paths=PackedStringArray("Dolor", "butt_1") instance=ExtResource("3_hrxlq")]
+[node name="PlacerBar" parent="." instance=ExtResource("4_xbxn5")]
+offset_left = 551.0
+offset_top = 66.0
+offset_right = 792.0
+offset_bottom = 93.0
+
+[node name="ToleranciaBar" parent="." instance=ExtResource("5_l50a1")]
+offset_left = 552.0
+offset_top = 104.0
+offset_right = 793.0
+offset_bottom = 131.0
+
+[node name="GameManager" parent="." node_paths=PackedStringArray("Dolor", "Placer", "Tolerancia", "butt_1") instance=ExtResource("3_hrxlq")]
 Dolor = NodePath("../DolorBar")
+Placer = NodePath("../PlacerBar")
+Tolerancia = NodePath("../ToleranciaBar")
 butt_1 = NodePath("../Butt1")
 
 [connection signal="mouse_entered" from="zona1" to="." method="_on_zona_1_mouse_entered"]
