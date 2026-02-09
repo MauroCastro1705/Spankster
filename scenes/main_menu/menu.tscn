@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://6uanoj04x7px"]
+
+[ext_resource type="Script" uid="uid://c1u4sb7th53m1" path="res://scenes/main_menu/menu.gd" id="1_pt1kw"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_pt1kw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(800, 600)
+color = Color(0.28729492, 0.28729492, 0.2872949, 1)
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 238.0
+offset_top = 137.0
+offset_right = 555.0
+offset_bottom = 247.0
+theme_override_font_sizes/font_size = 80
+text = "Spanker"
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 40)
+offset_left = 354.0
+offset_top = 334.0
+offset_right = 403.0
+offset_bottom = 365.0
+text = "Jugar"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,4 +1,5 @@
 extends Node
+class_name GameManager
 const FLOGGER = preload("uid://d4jmi1wtnawp0")
 const MANO = preload("uid://diboyf6rdn73n")
 const PALMETA = preload("uid://bqg0mxbtf6ldd")
@@ -9,8 +10,8 @@ const VARILLA = preload("uid://xgad24r2eaci")
 @onready var hit_timer: Timer = $hit_timer
 signal spank
 @onready var hit_cooldown: Timer = $hit_cooldown
-@onready var canSpankTimer:bool = true
-@onready var canSpankZona:bool = false
+var can_spank_timer := true
+var can_spank_zone := false
 
 #barras de stats
 @export var Dolor:Control
@@ -29,59 +30,81 @@ var zona1_multi:float = 1.0
 var zona2_multi:float = 1.25
 var spank_multi
 
+var weapon = null
 var arma_elegida
+var weapon_by_action := {}
 
 func _ready() -> void:
 	colorInicial = butt_1.modulate
 	print(colorInicial)
 	spank.connect(se_hizo_spank)
 	hit_cooldown.wait_time = Global.spank_timer
+	set_ui_values()
+	arma_elegida = FLOGGER
+	Global.player_score = 0
+	weapon_by_action = {
+		"arma1": FLOGGER,
+		"arma2": MANO,
+		"arma3": PALMETA,
+		"arma4": VARILLA,
+	}
+	weapon = FLOGGER
+	
+func set_ui_values():
 	Dolor.set_value()
 	Placer.set_value()
 	Tolerancia.set_value()
-	arma_elegida = FLOGGER
-	Global.player_score = 0
 	
-	
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("golpe"):
+		hitCulo()
+		return
 
+	# weapon selection
+	for action in weapon_by_action.keys():
+		if event.is_action_pressed(action):
+			set_weapon(weapon_by_action[action])
+			return
+
+func set_weapon(new_weapon) -> void:
+	weapon = new_weapon
+	
 func hitCulo():
-	if canSpankTimer and canSpankZona:
+	if can_spank_timer and can_spank_zone:
 		butt_1.modulate = colorSpank
 		hit_timer.start()
 		hit_cooldown.start()
-		canSpankTimer = false
+		can_spank_timer = false
 		emit_signal("spank")
 	
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("golpe"):
-		hitCulo()
 	elegir_arma()
 	
 
 func se_hizo_spank():
 	print("spank hecho")
-	calcular_dmg()
+	_apply_damage()
 
 func zona1_act():
 	colorSpank = colorZona1
-	canSpankZona = true
+	can_spank_zone = true
 	spank_multi = zona1_multi
 	print("zona1")
 
 func zona2_act():
 	colorSpank = colorZona2
-	canSpankZona = true
+	can_spank_zone = true
 	spank_multi = zona2_multi
 	print("zona2")
 
 func reset_spank():
-	canSpankZona = false
+	can_spank_zone = false
 	colorSpank = colorInicial
 	spank_multi = 1
 	print("spank reset")
 
 func _on_hit_cooldown_timeout() -> void:
-	canSpankTimer = true
+	can_spank_timer = true
 
 func _on_hit_timer_timeout() -> void:
 	butt_1.modulate = colorInicial
@@ -102,16 +125,14 @@ func activar_arma(arma):
 	herramienta.select_tool(arma)
 	herramienta.set_tool()
 
-func calcular_dmg():
-	if arma_elegida:
-		update_global_var()
-		game_over_check()
-		Dolor.update_dolor(arma_elegida.dolor * spank_multi)
-		Placer.update_placer(arma_elegida.placer * spank_multi)
-		Tolerancia.disminuir_tolerancia(arma_elegida.tolerancia * spank_multi)
-		print("dolor: " , arma_elegida.dolor * spank_multi)
-		print("placer: " , arma_elegida.placer * spank_multi)
-		print("tolerancia: " , arma_elegida.tolerancia * spank_multi)
+func _apply_damage() -> void:
+	update_global_var()
+	game_over_check()
+	# Apply to UI
+	Dolor.update_dolor(weapon.dolor * spank_multi)
+	Placer.update_placer(weapon.placer * spank_multi)
+	Tolerancia.disminuir_tolerancia(weapon.tolerancia * spank_multi)
+
 
 func update_global_var():
 	Global.dolor += arma_elegida.dolor * spank_multi
@@ -120,6 +141,6 @@ func update_global_var():
 
 func game_over_check():
 	if Global.tolerancia <= 0:
-		canSpankZona = false
+		can_spank_zone = false
 		Global.gameOver.emit()
 		return
