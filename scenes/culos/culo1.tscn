@@ -28,14 +28,14 @@ metadata/_edit_lock_ = true
 position = Vector2(-164, 11)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="zona1"]
-polygon = PackedVector2Array(448, 159, 486, 143, 583, 134, 699, 149, 774, 246, 796, 318, 805, 383, 715, 393, 695, 393, 637, 387, 604, 370, 574, 350, 542, 370, 517, 381, 462, 389, 370, 372, 338, 362, 345, 313, 361, 270, 408, 193)
+polygon = PackedVector2Array(448, 159, 497, 136, 577, 132, 638, 135, 699, 149, 774, 246, 796, 318, 808, 382, 715, 393, 695, 393, 637, 387, 604, 370, 574, 350, 542, 370, 517, 381, 462, 389, 370, 372, 333, 361, 345, 313, 361, 270, 408, 193)
 
 [node name="zona2" type="Area2D" parent="."]
 position = Vector2(-164, 11)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="zona2"]
 position = Vector2(3, 256)
-polygon = PackedVector2Array(456, 144, 511, 136, 569, 110, 626, 141, 699, 149, 799, 138, 791, 211, 775, 269, 760, 317, 560, 312, 483, 322, 381, 323, 355, 301, 330, 183, 329, 116, 364, 127)
+polygon = PackedVector2Array(456, 144, 511, 136, 570, 100, 628, 136, 700, 144, 803, 139, 796, 213, 782, 272, 772, 315, 567, 315, 364, 311, 330, 183, 329, 116, 364, 127)
 
 [node name="DolorBar" parent="." instance=ExtResource("4_ed82e")]
 offset_left = 552.0
@@ -67,8 +67,3 @@ Placer = NodePath("../PlacerBar")
 Tolerancia = NodePath("../ToleranciaBar")
 herramienta = NodePath("../Herramienta")
 butt_1 = NodePath("../Butt1")
-
-[connection signal="mouse_entered" from="zona1" to="." method="_on_zona_1_mouse_entered"]
-[connection signal="mouse_exited" from="zona1" to="." method="_on_zona_1_mouse_exited"]
-[connection signal="mouse_entered" from="zona2" to="." method="_on_zona_2_mouse_entered"]
-[connection signal="mouse_exited" from="zona2" to="." method="_on_zona_2_mouse_exited"]
