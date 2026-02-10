@@ -61,12 +61,16 @@ text = "Bienvenido a Spanker, un juego educativo sobre el spanking"
 
 [node name="Label2" type="Label" parent="textos"]
 layout_mode = 0
-offset_left = 170.0
-offset_top = 116.0
-offset_right = 485.0
-offset_bottom = 208.0
+offset_left = 164.0
+offset_top = 100.0
+offset_right = 507.0
+offset_bottom = 258.0
 theme_override_font_sizes/font_size = 14
-text = "vas a tener 4 herramientas a tu disposicion para jugar, cada una con un comportamiento diferente, las selecionas con los numeros del 1 al 4, el spank lo das con la barra espaciadora y apuntas con el mouse"
+text = "vas a tener 4 herramientas a tu disposicion para jugar, cada una con un comportamiento diferente, las selecionas con los numeros del 1 al 4
+
+-el spank lo das con la barra espaciadora o el click 
+
+ -apuntas con el mouse"
 autowrap_mode = 2
 
 [node name="Label3" type="Label" parent="textos"]
