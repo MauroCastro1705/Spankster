@@ -74,7 +74,7 @@ func _ensure_fade_rect(vp: Window) -> ColorRect:
 		return rect
 
 	rect = ColorRect.new()
-	rect.nombre = name
+	rect.name = nombre
 	rect.color = Color.BLACK
 	rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	rect.set_anchors_preset(Control.PRESET_FULL_RECT)

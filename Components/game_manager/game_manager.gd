@@ -7,6 +7,8 @@ const VARILLA = preload("uid://xgad24r2eaci")
 
 
 
+
+
 @onready var hit_timer: Timer = $hit_timer
 signal spank
 @onready var hit_cooldown: Timer = $hit_cooldown
@@ -143,4 +145,5 @@ func game_over_check():
 	if Global.tolerancia <= 0:
 		can_spank_zone = false
 		Global.gameOver.emit()
+		SceneChanger.change_to("res://scenes/score_scene/score_screen.tscn", true)
 		return

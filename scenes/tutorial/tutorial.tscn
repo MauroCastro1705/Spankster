@@ -1,0 +1,164 @@
+[gd_scene load_steps=12 format=3 uid="uid://ddb3dv2pw7t5h"]
+
+[ext_resource type="Script" uid="uid://d3h0xh681vlrk" path="res://scenes/tutorial/tutorial.gd" id="1_bmltb"]
+[ext_resource type="Texture2D" uid="uid://ch5esno87lff1" path="res://assets/butt-spanking-zones-new2_jpg.png" id="1_jaenq"]
+[ext_resource type="Texture2D" uid="uid://cvdu37ju30a6p" path="res://assets/1Recurso 3.png" id="2_bmltb"]
+[ext_resource type="PackedScene" uid="uid://d1lxcbhqiw7oo" path="res://Components/barras/dolor/Dolor_bar.tscn" id="4_pq3l0"]
+[ext_resource type="PackedScene" uid="uid://c3jiq80rb54pt" path="res://Components/barras/placer/Placer_bar.tscn" id="5_g7eoy"]
+[ext_resource type="PackedScene" uid="uid://bpi8cwhk3qwiu" path="res://Components/barras/tolerancia/Tolerancia_bar.tscn" id="6_ha56g"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g40di"]
+load_path = "res://.godot/imported/1Recurso 3.png-6e54d113944b698baed99aef2ffb31ae.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r23bs"]
+atlas = SubResource("CompressedTexture2D_g40di")
+region = Rect2(191.07849, 0.22519016, 212.58737, 189.6688)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pq3l0"]
+atlas = ExtResource("2_bmltb")
+region = Rect2(0.24525452, -2.8690567, 189.06169, 187.78552)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7eoy"]
+atlas = ExtResource("2_bmltb")
+region = Rect2(-3.793274, 211.48987, 193.10022, 187.94238)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha56g"]
+atlas = SubResource("CompressedTexture2D_g40di")
+region = Rect2(194.62161, 192.1969, 209.04425, 201.95801)
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource("1_bmltb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(800, 600)
+offset_right = 800.0
+offset_bottom = 600.0
+size_flags_horizontal = 6
+color = Color(0.3515629, 0.3515629, 0.35156286, 1)
+metadata/_edit_lock_ = true
+
+[node name="ButtSpankingZonesNew2Jpg" type="Sprite2D" parent="."]
+position = Vector2(672, 330.99997)
+scale = Vector2(0.51600003, 0.516)
+texture = ExtResource("1_jaenq")
+
+[node name="textos" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="textos"]
+layout_mode = 0
+offset_left = 173.0
+offset_top = 36.0
+offset_right = 636.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 18
+text = "Bienvenido a Spanker, un juego educativo sobre el spanking"
+
+[node name="Label2" type="Label" parent="textos"]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 116.0
+offset_right = 485.0
+offset_bottom = 208.0
+theme_override_font_sizes/font_size = 14
+text = "vas a tener 4 herramientas a tu disposicion para jugar, cada una con un comportamiento diferente, las selecionas con los numeros del 1 al 4, el spank lo das con la barra espaciadora y apuntas con el mouse"
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="textos"]
+layout_mode = 0
+offset_left = 219.0
+offset_top = 320.0
+offset_right = 544.0
+offset_bottom = 386.0
+theme_override_font_sizes/font_size = 14
+text = "Debes tener cuidado donde spankeas, podrias llegar al limite de tolerancia muy rapido e incluso lastimar a la persona"
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 27.0
+offset_top = 66.0
+offset_right = 175.0
+offset_bottom = 398.0
+scale = Vector2(0.8, 0.8)
+
+[node name="imagenes" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect1" type="TextureRect" parent="HBoxContainer/imagenes"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = SubResource("AtlasTexture_r23bs")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/imagenes"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_pq3l0")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/imagenes"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_g7eoy")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="HBoxContainer/imagenes"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ha56g")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="descripcion" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/descripcion"]
+layout_mode = 2
+text = "Flogger"
+
+[node name="Label2" type="Label" parent="HBoxContainer/descripcion"]
+layout_mode = 2
+text = "varilla"
+
+[node name="Label3" type="Label" parent="HBoxContainer/descripcion"]
+layout_mode = 2
+text = "mano"
+
+[node name="Label4" type="Label" parent="HBoxContainer/descripcion"]
+layout_mode = 2
+text = "palmeta"
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(120, 40)
+offset_left = 398.0
+offset_top = 536.0
+offset_right = 518.0
+offset_bottom = 576.0
+text = "Continuar"
+
+[node name="DolorBar" parent="." instance=ExtResource("4_pq3l0")]
+offset_left = 69.0
+offset_top = 391.0
+offset_right = 310.0
+offset_bottom = 418.0
+
+[node name="PlacerBar" parent="." instance=ExtResource("5_g7eoy")]
+offset_left = 69.0
+offset_top = 431.0
+offset_right = 310.0
+offset_bottom = 458.0
+
+[node name="ToleranciaBar" parent="." instance=ExtResource("6_ha56g")]
+offset_left = 69.0
+offset_top = 469.0
+offset_right = 310.0
+offset_bottom = 496.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

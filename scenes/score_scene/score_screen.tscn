@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvukynicc3qyk"]
+
+[ext_resource type="Script" uid="uid://csqvsbmlehxu5" path="res://scenes/score_scene/score_screen.gd" id="1_53yvw"]
+
+[node name="ScoreScreen" type="Node2D"]
+script = ExtResource("1_53yvw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 815.0
+offset_bottom = 610.0
+color = Color(0.13319641, 0.13319641, 0.13319638, 1)
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 60)
+offset_left = 317.0
+offset_top = 501.0
+offset_right = 441.0
+offset_bottom = 561.0
+text = "Volver al menu"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 255.0
+offset_top = 53.0
+offset_right = 540.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 21
+text = "Gracias por probar Spanker!"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 244.0
+offset_top = 102.0
+offset_right = 562.0
+offset_bottom = 125.0
+text = "el spankee llego al limite de su tolerancia"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 250.0
+offset_top = 191.0
+offset_right = 343.0
+offset_bottom = 231.0
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Tu puntaje:"
+
+[node name="puntaje" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

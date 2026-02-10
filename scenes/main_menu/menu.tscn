@@ -1,13 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://6uanoj04x7px"]
+[gd_scene load_steps=3 format=3 uid="uid://6uanoj04x7px"]
 
 [ext_resource type="Script" uid="uid://c1u4sb7th53m1" path="res://scenes/main_menu/menu.gd" id="1_pt1kw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pt1kw"]
+font_size = 80
+outline_size = 13
+outline_color = Color(0.013677684, 0.0022474811, 6.1691964e-05, 1)
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_pt1kw")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(800, 600)
-color = Color(0.28729492, 0.28729492, 0.2872949, 1)
+color = Color(0.49026138, 0.1516006, 0.17126837, 1)
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="."]
@@ -17,13 +22,33 @@ offset_right = 555.0
 offset_bottom = 247.0
 theme_override_font_sizes/font_size = 80
 text = "Spanker"
+label_settings = SubResource("LabelSettings_pt1kw")
 
 [node name="Button" type="Button" parent="."]
 custom_minimum_size = Vector2(100, 40)
-offset_left = 354.0
-offset_top = 334.0
-offset_right = 403.0
-offset_bottom = 365.0
+offset_left = 343.0
+offset_top = 319.0
+offset_right = 443.0
+offset_bottom = 359.0
 text = "Jugar"
+
+[node name="version" type="Label" parent="."]
+offset_left = 698.0
+offset_top = 574.0
+offset_right = 797.0
+offset_bottom = 597.0
+text = "Version 0.0.1"
+
+[node name="Label2" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 13
+text = "parches futuros:
+-imagenes y animaciones
+-mejor tutorial
+-tipografias y shaders
+-leader board online
+-sonido
+-creditos"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
