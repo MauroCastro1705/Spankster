@@ -4,8 +4,8 @@ const FLOGGER = preload("uid://d4jmi1wtnawp0")
 const MANO = preload("uid://diboyf6rdn73n")
 const PALMETA = preload("uid://bqg0mxbtf6ldd")
 const VARILLA = preload("uid://xgad24r2eaci")
-
-
+@export var hit_vfx_scene: PackedScene
+var hit_vfx_parent
 
 
 
@@ -74,11 +74,29 @@ func set_weapon(new_weapon) -> void:
 func hitCulo():
 	if can_spank_timer and can_spank_zone:
 		butt_1.modulate = colorSpank
+		_spawn_hit_vfx_at_mouse()
 		hit_timer.start()
 		hit_cooldown.start()
 		can_spank_timer = false
 		emit_signal("spank")
-	
+		
+func _spawn_hit_vfx_at_mouse() -> void:
+	if hit_vfx_scene == null:
+		return
+
+	var vfx := hit_vfx_scene.instantiate() as Node2D
+	if vfx == null:
+		push_warning("hit_vfx_scene root is not Node2D")
+		return
+
+	vfx.global_position = get_viewport().get_mouse_position()
+
+	var parent = hit_vfx_parent
+	if parent == null:
+		parent = get_tree().current_scene
+	parent.add_child(vfx)
+
+
 func _process(_delta: float) -> void:
 	elegir_arma()
 	

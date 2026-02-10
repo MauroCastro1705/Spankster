@@ -63,11 +63,9 @@ offset_right = 23.0
 offset_bottom = 24.0
 
 [node name="GameManager" parent="." node_paths=PackedStringArray("Dolor", "Placer", "Tolerancia", "herramienta", "butt_1") instance=ExtResource("3_hrxlq")]
+hit_vfx_scene = ExtResource("8_a74do")
 Dolor = NodePath("../DolorBar")
 Placer = NodePath("../PlacerBar")
 Tolerancia = NodePath("../ToleranciaBar")
 herramienta = NodePath("../Herramienta")
 butt_1 = NodePath("../Butt1")
-
-[node name="MarcaSpank" parent="." instance=ExtResource("8_a74do")]
-position = Vector2(408, 106)
