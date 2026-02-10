@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1sjlmgtoxhei"]
+[gd_scene load_steps=9 format=3 uid="uid://d1sjlmgtoxhei"]
 
 [ext_resource type="Script" uid="uid://cm51w1h5opbfx" path="res://scenes/culos/culo_1.gd" id="1_me7xb"]
 [ext_resource type="Texture2D" uid="uid://kjcs8jqf5h3y" path="res://assets/butt1.png" id="2_hrxlq"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c3jiq80rb54pt" path="res://Components/barras/placer/Placer_bar.tscn" id="4_xbxn5"]
 [ext_resource type="PackedScene" uid="uid://bpi8cwhk3qwiu" path="res://Components/barras/tolerancia/Tolerancia_bar.tscn" id="5_l50a1"]
 [ext_resource type="PackedScene" uid="uid://bhwaybeawbrfg" path="res://Components/UI_herramienta/herramienta.tscn" id="7_l50a1"]
+[ext_resource type="PackedScene" uid="uid://bx8cvgi6priwe" path="res://Components/marca_spank/marca_spank.tscn" id="8_a74do"]
 
 [node name="Culo1" type="Node2D"]
 script = ExtResource("1_me7xb")
@@ -67,3 +68,6 @@ Placer = NodePath("../PlacerBar")
 Tolerancia = NodePath("../ToleranciaBar")
 herramienta = NodePath("../Herramienta")
 butt_1 = NodePath("../Butt1")
+
+[node name="MarcaSpank" parent="." instance=ExtResource("8_a74do")]
+position = Vector2(408, 106)

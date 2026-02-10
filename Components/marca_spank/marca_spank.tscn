@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://bx8cvgi6priwe"]
+
+[ext_resource type="Script" uid="uid://c532771xh2kbi" path="res://Components/marca_spank/marca_spank.gd" id="1_h3h3d"]
+
+[sub_resource type="Gradient" id="Gradient_1r1wy"]
+offsets = PackedFloat32Array(0.09009009, 1)
+colors = PackedColorArray(0.84705883, 0.07058824, 0.011764706, 0.56078434, 0.012617188, 0.012617188, 0.012617188, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h3h3d"]
+gradient = SubResource("Gradient_1r1wy")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8616352, 0.11006289)
+
+[sub_resource type="Animation" id="Animation_vxycm"]
+resource_name = "latido"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.99),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t886f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pu21e"]
+_data = {
+&"RESET": SubResource("Animation_t886f"),
+&"latido": SubResource("Animation_vxycm")
+}
+
+[node name="MarcaSpank" type="Node2D"]
+script = ExtResource("1_h3h3d")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.1000000000000005
+autostart = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 33.0
+offset_bottom = 33.0
+texture = SubResource("GradientTexture2D_h3h3d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pu21e")
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
