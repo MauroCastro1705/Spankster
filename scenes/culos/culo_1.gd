@@ -1,6 +1,7 @@
 extends Node2D
 
-@onready var game_manager: Node = $GameManager
+signal zone_changed(zone_name)
+
 @onready var zona_1: Area2D = $zona1
 @onready var zona_2: Area2D = $zona2
 
@@ -23,8 +24,6 @@ func _update_zone_under_mouse() -> void:
 	params.position = p
 	params.collide_with_areas = true
 	params.collide_with_bodies = false
-	# Optional: restrict to a mask if you use layers
-	# params.collision_mask = 1 << 0
 
 	var hits := space.intersect_point(params, 32)
 
@@ -33,7 +32,6 @@ func _update_zone_under_mouse() -> void:
 		var a := h.collider as Area2D
 		if a == null:
 			continue
-		# choose a rule for "which one wins" if overlapping:
 		if best == null or a.z_index > best.z_index:
 			best = a
 
@@ -43,8 +41,8 @@ func _update_zone_under_mouse() -> void:
 	current_zone = best
 
 	if current_zone == zona_1:
-		game_manager.zona1_act()
+		emit_signal("zone_changed", "zona1")
 	elif current_zone == zona_2:
-		game_manager.zona2_act()
+		emit_signal("zone_changed", "zona2")
 	else:
-		game_manager.reset_spank()
+		emit_signal("zone_changed", null)

@@ -1,27 +1,17 @@
 ## placer bar
-extends Control
-
-#PLACER BAR
-@onready var dolor_prograss_bar: ProgressBar = $DolorPrograssBar
-
-var max_dolor
-var current_placer
+extends "res://Components/barras/ProgressBarController.gd"
 
 func _ready() -> void:
-	current_placer = 0
-	
+	current_value = 0
+	set_max(Global.placer_max)
+	set_current(current_value)
 
-func set_value():
-	dolor_prograss_bar.max_value = Global.placer_max
-	dolor_prograss_bar.value = current_placer
+func set_value() -> void:
+	set_max(Global.placer_max)
+	set_current(current_value)
 
+func update_placer(new_value) -> void:
+	increase(new_value)
 
-func update_placer(new_value):
-	current_placer += new_value
-	dolor_prograss_bar.value = current_placer
-	print("se updateo el placer")
-
-func disminuir_placer(value):
-	current_placer -= value
-	dolor_prograss_bar.value = current_placer
-	print("se updateo el placer")
+func disminuir_placer(value) -> void:
+	decrease(value)

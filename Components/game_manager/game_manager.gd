@@ -7,6 +7,11 @@ const VARILLA = preload("uid://xgad24r2eaci")
 @export var hit_vfx_scene: PackedScene
 var hit_vfx_parent
 
+const WeaponManagerScript = preload("res://Components/game_manager/weapon_manager.gd")
+const DamageCalculatorScript = preload("res://Components/game_manager/damage_calculator.gd")
+var weapon_manager = null
+var damage_calculator = null
+
 
 
 @onready var hit_timer: Timer = $hit_timer
@@ -42,15 +47,24 @@ func _ready() -> void:
 	spank.connect(se_hizo_spank)
 	hit_cooldown.wait_time = Global.spank_timer
 	set_ui_values()
-	arma_elegida = FLOGGER
 	Global.player_score = 0
-	weapon_by_action = {
-		"arma1": FLOGGER,
-		"arma2": MANO,
-		"arma3": PALMETA,
-		"arma4": VARILLA,
-	}
-	weapon = FLOGGER
+	# instantiate helper modules
+	weapon_manager = WeaponManagerScript.new()
+	weapon_manager.load_weapon_registry()
+	weapon_by_action = weapon_manager.weapon_by_action
+	damage_calculator = DamageCalculatorScript.new()
+	# default to arma1 if available
+	if weapon_manager.get_default_weapon() != null:
+		arma_elegida = weapon_manager.get_default_weapon()
+		weapon = arma_elegida
+	else:
+		arma_elegida = null
+		weapon = null
+
+	# connect to zone signals from parent node if present
+	var parent = get_parent()
+	if parent != null and parent.has_signal("zone_changed"):
+		parent.connect("zone_changed", Callable(self, "_on_zone_changed"))
 	
 func set_ui_values():
 	Dolor.set_value()
@@ -65,11 +79,22 @@ func _unhandled_input(event: InputEvent) -> void:
 	# weapon selection
 	for action in weapon_by_action.keys():
 		if event.is_action_pressed(action):
-			set_weapon(weapon_by_action[action])
+			change_weapon(weapon_by_action[action])
 			return
 
 func set_weapon(new_weapon) -> void:
+	change_weapon(new_weapon)
+
+
+func change_weapon(new_weapon) -> void:
+	# Keep both references in sync and update the tool UI
 	weapon = new_weapon
+	arma_elegida = new_weapon
+	if herramienta:
+		herramienta.select_tool(new_weapon)
+		herramienta.set_tool()
+	# optional debug print
+	# print("Weapon changed to: ", new_weapon.name)
 	
 func hitCulo():
 	if can_spank_timer and can_spank_zone:
@@ -98,7 +123,7 @@ func _spawn_hit_vfx_at_mouse() -> void:
 
 
 func _process(_delta: float) -> void:
-	elegir_arma()
+	pass# input is handled in _unhandled_input; per-frame checks removed
 	
 
 func se_hizo_spank():
@@ -123,44 +148,33 @@ func reset_spank():
 	spank_multi = 1
 	print("spank reset")
 
+
+func _on_zone_changed(zone_name):
+	if zone_name == "zona1":
+		zona1_act()
+	elif zone_name == "zona2":
+		zona2_act()
+	else:
+		reset_spank()
+
 func _on_hit_cooldown_timeout() -> void:
 	can_spank_timer = true
 
 func _on_hit_timer_timeout() -> void:
 	butt_1.modulate = colorInicial
 
-func elegir_arma():
-	if Input.is_action_just_pressed("arma1"):
-		activar_arma(FLOGGER)
-	if  Input.is_action_just_pressed("arma2"):
-		activar_arma(MANO)
-	if  Input.is_action_just_pressed("arma3"):
-		activar_arma(PALMETA)
-	if  Input.is_action_just_pressed("arma4"):
-		activar_arma(VARILLA)
-
 func activar_arma(arma):
-	arma_elegida = arma
-	print(arma_elegida.name)
-	herramienta.select_tool(arma)
-	herramienta.set_tool()
+	# kept for compatibility; delegate to change_weapon
+	change_weapon(arma)
+
 
 func _apply_damage() -> void:
-	update_global_var()
-	game_over_check()
-	# Apply to UI
-	Dolor.update_dolor(weapon.dolor * spank_multi)
-	Placer.update_placer(weapon.placer * spank_multi)
-	Tolerancia.disminuir_tolerancia(weapon.tolerancia * spank_multi)
-
-
-func update_global_var():
-	Global.dolor += arma_elegida.dolor * spank_multi
-	Global.placer += arma_elegida.placer * spank_multi
-	Global.tolerancia -= arma_elegida.tolerancia * spank_multi
-
-func game_over_check():
-	if Global.tolerancia <= 0:
+	var selected = arma_elegida if arma_elegida != null else weapon
+	if selected == null:
+		push_warning("No weapon selected in _apply_damage")
+		return
+	var is_game_over = damage_calculator.apply_damage(selected, spank_multi, Dolor, Placer, Tolerancia)
+	if is_game_over:
 		can_spank_zone = false
 		Global.gameOver.emit()
 		SceneChanger.change_to("res://scenes/score_scene/score_screen.tscn", true)
