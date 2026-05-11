@@ -1,14 +1,13 @@
 ## tolerancia bar
 extends "res://Components/barras/ProgressBarController.gd"
-#TOLERANCIA BAR
 
+# TOLERANCIA BAR
 func _ready() -> void:
-	current_value = Global.tolerancia_max
-	set_max(Global.tolerancia_max)
+	# default to full bar; GameManager should override max/current as needed
+	current_value = max_value
 	set_current(current_value)
 
 func set_value() -> void:
-	set_max(Global.tolerancia_max)
 	set_current(current_value)
 
 func update_tolerancia(new_value: float) -> void:

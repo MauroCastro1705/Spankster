@@ -2,11 +2,9 @@ extends "res://Components/barras/ProgressBarController.gd"
 
 func _ready() -> void:
 	current_value = 0
-	set_max(Global.dolor_max)
 	set_current(current_value)
 
 func set_value() -> void:
-	set_max(Global.dolor_max)
 	set_current(current_value)
 
 func update_dolor(new_value: int) -> void:

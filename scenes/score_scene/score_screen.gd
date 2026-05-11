@@ -2,7 +2,8 @@ extends Node2D
 @onready var puntaje: Label = $HBoxContainer/puntaje
 
 func _ready() -> void:
-	puntaje.text = str(Global.player_score)
+	var score = Global.player_score
+	puntaje.text = str(score)
 
 
 func _on_button_pressed() -> void:

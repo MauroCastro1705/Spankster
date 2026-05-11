@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1sjlmgtoxhei"]
+[gd_scene format=3 uid="uid://d1sjlmgtoxhei"]
 
 [ext_resource type="Script" uid="uid://cm51w1h5opbfx" path="res://scenes/culos/culo_1.gd" id="1_me7xb"]
 [ext_resource type="Texture2D" uid="uid://kjcs8jqf5h3y" path="res://assets/butt1.png" id="2_hrxlq"]
@@ -9,63 +9,63 @@
 [ext_resource type="PackedScene" uid="uid://bhwaybeawbrfg" path="res://Components/UI_herramienta/herramienta.tscn" id="7_l50a1"]
 [ext_resource type="PackedScene" uid="uid://bx8cvgi6priwe" path="res://Components/marca_spank/marca_spank.tscn" id="8_a74do"]
 
-[node name="Culo1" type="Node2D"]
+[node name="Culo1" type="Node2D" unique_id=1023561907]
 script = ExtResource("1_me7xb")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=331516884]
 process_mode = 4
 z_index = -3
 offset_right = 807.0
 offset_bottom = 603.0
 metadata/_edit_lock_ = true
 
-[node name="Butt1" type="Sprite2D" parent="."]
+[node name="Butt1" type="Sprite2D" parent="." unique_id=510508446]
 position = Vector2(399, 320)
 scale = Vector2(3.5540533, 3.5540538)
 texture = ExtResource("2_hrxlq")
 metadata/_edit_lock_ = true
 
-[node name="zona1" type="Area2D" parent="."]
+[node name="zona1" type="Area2D" parent="." unique_id=1834536776]
 position = Vector2(-164, 11)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="zona1"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="zona1" unique_id=572497701]
 polygon = PackedVector2Array(448, 159, 497, 136, 577, 132, 638, 135, 699, 149, 774, 246, 796, 318, 808, 382, 715, 393, 695, 393, 637, 387, 604, 370, 574, 350, 542, 370, 517, 381, 462, 389, 370, 372, 333, 361, 345, 313, 361, 270, 408, 193)
 
-[node name="zona2" type="Area2D" parent="."]
+[node name="zona2" type="Area2D" parent="." unique_id=626266848]
 position = Vector2(-164, 11)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="zona2"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="zona2" unique_id=154220822]
 position = Vector2(3, 256)
 polygon = PackedVector2Array(456, 144, 511, 136, 570, 100, 628, 136, 700, 144, 803, 139, 796, 213, 782, 272, 772, 315, 567, 315, 364, 311, 330, 183, 329, 116, 364, 127)
 
-[node name="DolorBar" parent="." instance=ExtResource("4_ed82e")]
+[node name="DolorBar" parent="." unique_id=1701702682 instance=ExtResource("4_ed82e")]
 offset_left = 552.0
 offset_top = 26.0
 offset_right = 793.0
 offset_bottom = 53.0
 
-[node name="PlacerBar" parent="." instance=ExtResource("4_xbxn5")]
+[node name="PlacerBar" parent="." unique_id=1919145421 instance=ExtResource("4_xbxn5")]
 offset_left = 552.0
 offset_top = 66.0
 offset_right = 793.0
 offset_bottom = 93.0
 
-[node name="ToleranciaBar" parent="." instance=ExtResource("5_l50a1")]
+[node name="ToleranciaBar" parent="." unique_id=287374822 instance=ExtResource("5_l50a1")]
 offset_left = 552.0
 offset_top = 104.0
 offset_right = 793.0
 offset_bottom = 131.0
 
-[node name="Herramienta" parent="." instance=ExtResource("7_l50a1")]
+[node name="Herramienta" parent="." unique_id=100049493 instance=ExtResource("7_l50a1")]
 offset_left = 23.0
 offset_top = 24.0
 offset_right = 23.0
 offset_bottom = 24.0
 
-[node name="GameManager" parent="." node_paths=PackedStringArray("Dolor", "Placer", "Tolerancia", "herramienta", "butt_1") instance=ExtResource("3_hrxlq")]
+[node name="GameManager" parent="." unique_id=1422153101 node_paths=PackedStringArray("Dolor_barra", "Placer_barra", "Tolerancia_barra", "herramienta", "butt_1") instance=ExtResource("3_hrxlq")]
 hit_vfx_scene = ExtResource("8_a74do")
-Dolor = NodePath("../DolorBar")
-Placer = NodePath("../PlacerBar")
-Tolerancia = NodePath("../ToleranciaBar")
+Dolor_barra = NodePath("../DolorBar")
+Placer_barra = NodePath("../PlacerBar")
+Tolerancia_barra = NodePath("../ToleranciaBar")
 herramienta = NodePath("../Herramienta")
 butt_1 = NodePath("../Butt1")

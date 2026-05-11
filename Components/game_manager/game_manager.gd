@@ -21,9 +21,14 @@ var can_spank_timer := true
 var can_spank_zone := false
 
 #barras de stats
-@export var Dolor:Control
-@export var Placer:Control
-@export var Tolerancia:Control
+@export var Dolor_barra:Control
+@export var Placer_barra:Control
+@export var Tolerancia_barra:Control
+
+# Max values configurable per-GameManager instance
+@export var dolor_max: float = 100.0
+@export var placer_max: float = 100.0
+@export var tolerancia_max: float = 100.0
 @export var herramienta:Control
 
 #sprite
@@ -46,6 +51,7 @@ func _ready() -> void:
 	print(colorInicial)
 	spank.connect(se_hizo_spank)
 	hit_cooldown.wait_time = Global.spank_timer
+	# apply configured max/current values to the bars (decoupled from Global)
 	set_ui_values()
 	Global.player_score = 0
 	# instantiate helper modules
@@ -53,6 +59,8 @@ func _ready() -> void:
 	weapon_manager.load_weapon_registry()
 	weapon_by_action = weapon_manager.weapon_by_action
 	damage_calculator = DamageCalculatorScript.new()
+	# wire exported UI bars into the damage calculator so scenes can configure them
+	damage_calculator.setup(Dolor_barra, Placer_barra, Tolerancia_barra)
 	# default to arma1 if available
 	if weapon_manager.get_default_weapon() != null:
 		arma_elegida = weapon_manager.get_default_weapon()
@@ -67,9 +75,15 @@ func _ready() -> void:
 		parent.connect("zone_changed", Callable(self, "_on_zone_changed"))
 	
 func set_ui_values():
-	Dolor.set_value()
-	Placer.set_value()
-	Tolerancia.set_value()
+	if Dolor_barra:
+		Dolor_barra.set_max(dolor_max)
+		Dolor_barra.set_current(0)
+	if Placer_barra:
+		Placer_barra.set_max(placer_max)
+		Placer_barra.set_current(0)
+	if Tolerancia_barra:
+		Tolerancia_barra.set_max(tolerancia_max)
+		Tolerancia_barra.set_current(tolerancia_max)
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("golpe"):
@@ -173,9 +187,20 @@ func _apply_damage() -> void:
 	if selected == null:
 		push_warning("No weapon selected in _apply_damage")
 		return
-	var is_game_over = damage_calculator.apply_damage(selected, spank_multi, Dolor, Placer, Tolerancia)
+	var is_game_over = damage_calculator.apply_damage(selected, spank_multi)
+	# persist stats to Global every hit so the global state stays in sync
+	var amount_dolor = selected.dolor * spank_multi
+	var amount_placer = selected.placer * spank_multi
+	var amount_tolerancia = selected.tolerancia * spank_multi
+	Global.add_dolor(int(amount_dolor))
+	Global.add_placer(int(amount_placer))
+	Global.reduce_tolerancia(int(amount_tolerancia))
+
 	if is_game_over:
 		can_spank_zone = false
+		# compute and store final score in Global so the score scene can read it
+		Global.score_calculation() 
+		# still emit gameOver for other listeners
 		Global.gameOver.emit()
 		SceneChanger.change_to("res://scenes/score_scene/score_screen.tscn", true)
 		return

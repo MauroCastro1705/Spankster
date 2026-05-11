@@ -1,16 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://dvukynicc3qyk"]
+[gd_scene format=3 uid="uid://dvukynicc3qyk"]
 
 [ext_resource type="Script" uid="uid://csqvsbmlehxu5" path="res://scenes/score_scene/score_screen.gd" id="1_53yvw"]
 
-[node name="ScoreScreen" type="Node2D"]
+[node name="ScoreScreen" type="Node2D" unique_id=757805187]
 script = ExtResource("1_53yvw")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1517996122]
 offset_right = 815.0
 offset_bottom = 610.0
 color = Color(0.13319641, 0.13319641, 0.13319638, 1)
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=1034290906]
 custom_minimum_size = Vector2(100, 60)
 offset_left = 317.0
 offset_top = 501.0
@@ -18,7 +18,7 @@ offset_right = 441.0
 offset_bottom = 561.0
 text = "Volver al menu"
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=599043372]
 offset_left = 255.0
 offset_top = 53.0
 offset_right = 540.0
@@ -26,24 +26,24 @@ offset_bottom = 83.0
 theme_override_font_sizes/font_size = 21
 text = "Gracias por probar Spanker!"
 
-[node name="Label2" type="Label" parent="."]
+[node name="Label2" type="Label" parent="." unique_id=1442966003]
 offset_left = 244.0
 offset_top = 102.0
 offset_right = 562.0
 offset_bottom = 125.0
 text = "el spankee llego al limite de su tolerancia"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=949237053]
 offset_left = 250.0
 offset_top = 191.0
 offset_right = 343.0
 offset_bottom = 231.0
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=682214361]
 layout_mode = 2
 text = "Tu puntaje:"
 
-[node name="puntaje" type="Label" parent="HBoxContainer"]
+[node name="puntaje" type="Label" parent="HBoxContainer" unique_id=1528128131]
 layout_mode = 2
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

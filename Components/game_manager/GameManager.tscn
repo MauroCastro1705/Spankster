@@ -1,13 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://6ewnf2c87odx"]
+[gd_scene format=3 uid="uid://6ewnf2c87odx"]
 
 [ext_resource type="Script" uid="uid://0prqpevkmuqw" path="res://Components/game_manager/game_manager.gd" id="1_m0s7c"]
 
-[node name="GameManager" type="Node"]
+[node name="GameManager" type="Node" unique_id=1710132530]
 script = ExtResource("1_m0s7c")
 
-[node name="hit_cooldown" type="Timer" parent="."]
+[node name="hit_cooldown" type="Timer" parent="." unique_id=1562393870]
 
-[node name="hit_timer" type="Timer" parent="."]
+[node name="hit_timer" type="Timer" parent="." unique_id=1692360539]
 wait_time = 0.1
 
 [connection signal="timeout" from="hit_cooldown" to="." method="_on_hit_cooldown_timeout"]

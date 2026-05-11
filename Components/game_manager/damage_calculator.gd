@@ -1,22 +1,32 @@
 extends Node
 class_name DamageCalculator
+var Dolor = null
+var Placer = null
+var Tolerancia = null
 
-func apply_damage(selected, spank_multi: float, Dolor, Placer, Tolerancia) -> bool:
-    if selected == null:
-        push_warning("No weapon provided to DamageCalculator.apply_damage")
-        return false
+func setup(dolor_node=null, placer_node=null, tolerancia_node=null) -> void:
+	Dolor = dolor_node
+	Placer = placer_node
+	Tolerancia = tolerancia_node
 
-    Global.add_dolor(selected.dolor * spank_multi)
-    Global.add_placer(selected.placer * spank_multi)
-    Global.reduce_tolerancia(selected.tolerancia * spank_multi)
+func apply_damage(selected, spank_multi: float) -> bool:
+	if selected == null:
+		push_warning("No weapon provided to DamageCalculator.apply_damage")
+		return false
 
-    # Update UI
-    if Dolor:
-        Dolor.update_dolor(selected.dolor * spank_multi)
-    if Placer:
-        Placer.update_placer(selected.placer * spank_multi)
-    if Tolerancia:
-        Tolerancia.disminuir_tolerancia(selected.tolerancia * spank_multi)
+	var amount_dolor = selected.dolor * spank_multi
+	var amount_placer = selected.placer * spank_multi
+	var amount_tolerancia = selected.tolerancia * spank_multi
 
-    # Return whether game over occurred
-    return Global.get_tolerancia() <= 0
+	# Update UI bars (if provided) instead of touching globals
+	if Dolor:
+		Dolor.update_dolor(amount_dolor)
+	if Placer:
+		Placer.update_placer(amount_placer)
+	if Tolerancia:
+		Tolerancia.disminuir_tolerancia(amount_tolerancia)
+
+	# Determine game over from the tolerance bar (GameManager persists to Global)
+	if Tolerancia:
+		return Tolerancia.current_value <= 0
+	return false
